@@ -2,12 +2,6 @@
 
 A language pain to code in
 
-## Running Compiler
-
-```./painscript <input file location> <output file location>```
-
-Eg. ```./painscript program.ps output.ps```
-
 ## Syntax
 
 `>`: Move the pointer left
