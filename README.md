@@ -4,14 +4,14 @@ A language pain to code in
 
 ## Syntax
 
-`>`: Move the pointer left
-`<`: Move the pointer right
-`+`: Increase the value of the cell which pointer is pointing at
-`-`: Decrease the value of the cell which pointer is pointing at
-`'`: Print the value's translation in letters to the console(lowercase)
-`"`: Print the value's translation in letters to the console(UPPERCASE)
-`]`: Print the value's translation in numbers to the console
-`[`: Print the value's translation in special chracters to the console
+`>`: Move the pointer right<br>
+`<`: Move the pointer left<br>
+`+`: Increase the value of the cell which pointer is pointing at<br>
+`-`: Decrease the value of the cell which pointer is pointing at<br>
+`'`: Print the value's translation in letters to the console(lowercase)<br>
+`"`: Print the value's translation in letters to the console(UPPERCASE)<br>
+`]`: Print the value's translation in numbers to the console<br>
+`[`: Print the value's translation in special chracters to the console<br>
 
 `Comments`: All characters which don't interfere with the syntax.
 
