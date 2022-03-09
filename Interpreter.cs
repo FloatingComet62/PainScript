@@ -58,6 +58,17 @@ namespace Interpreter{
                 output += storage[pointer];
             }else if(param == '['){
                 Translate.SpecialChar(storage[pointer]);
+            }else if(param == '.'){
+                string? input = Console.ReadLine();
+                if(input == null){
+                    Funcs.Sys.Exit(1, "Error: Invalid input");
+                }else{
+                    try{
+                        storage[pointer] += int.Parse(input);
+                    }catch{
+                        Funcs.Sys.Exit(1, "Error: Couldn't convert input to integer");
+                    }
+                }
             }
         }
         static public void AppendToOutput(string input){
