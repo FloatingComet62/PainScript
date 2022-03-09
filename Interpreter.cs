@@ -20,16 +20,6 @@ namespace Interpreter{
                 Funcs.Sys.Exit(1, "Error: Invalid input");
             }
         }
-        static public void Number(int input){
-            List<string> translation = new List<string>(new string[]{"0","1","2","3","4","5","6","7","8","9"});
-            try{
-                string output = translation[input];
-                Interpreter.AppendToOutput(output);
-            }
-            catch (System.Exception){
-                Funcs.Sys.Exit(1, "Error: Invalid input");
-            }
-        }
         static public void SpecialChar(int input){
         List<string> translation = new List<string>(new string[]{"~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "`", "[", "]", "{", "}", "|", "\\", ";", ":", "\"", "'", "<", ">", ",", ".", "?", "/", "\n"});
             try{
@@ -65,7 +55,7 @@ namespace Interpreter{
             }else if(param == '\"'){
                 Translate.UpperCase(storage[pointer]);
             }else if(param == ']'){
-                Translate.Number(storage[pointer]);
+                output += storage[pointer];
             }else if(param == '['){
                 Translate.SpecialChar(storage[pointer]);
             }
