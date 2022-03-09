@@ -12,6 +12,7 @@ A language pain to code in
 `"`: Print the value's translation in letters to the console(UPPERCASE)<br>
 `]`: Print the value's translation in numbers to the console<br>
 `[`: Print the value's translation in special chracters to the console<br>
+`.`: Take user input(Numbers only)<br>
 
 `Comments`: All characters which don't interfere with the syntax.
 
