@@ -8,11 +8,19 @@ A language pain to code in
 `<`: Move the pointer left<br>
 `+`: Increase the value of the cell which pointer is pointing at<br>
 `-`: Decrease the value of the cell which pointer is pointing at<br>
-`'`: Print the value's translation in letters to the console(lowercase)<br>
-`"`: Print the value's translation in letters to the console(UPPERCASE)<br>
-`]`: Print the value's translation in numbers to the console<br>
-`[`: Print the value's translation in special chracters to the console<br>
+
+`'`: Print the value's translation in letters to the output file(lowercase)<br>
+`"`: Print the value's translation in letters to the output file(UPPERCASE)<br>
+`]`: Print the value's translation in numbers to the output file<br>
+`[`: Print the value's translation in special chracters to the output file<br>
+
+`''`: Print the value's translation in letters to the console(lowercase)<br>
+`""`: Print the value's translation in letters to the console(UPPERCASE)<br>
+`]]`: Print the value's translation in numbers to the console<br>
+`[[`: Print the value's translation in special chracters to the console<br>
+
 `.`: Take user input(Numbers only)<br>
+`{}`: A while loop which will loop the items inside it untill the value of the pointer on which the loop was declared goes to 0
 
 `Comments`: All characters which don't interfere with the syntax.
 
