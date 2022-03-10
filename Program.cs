@@ -3,6 +3,8 @@ using Funcs;
 
 namespace Program{
     class Program{
+
+        static int i = 0;
         static void Main(string[] args){
             if(args.Length == 0){
                 Funcs.Sys.Exit(1, "Error: No input file location provided");
@@ -21,12 +23,17 @@ namespace Program{
                 File.Create(outputDestination).Close();
                 string data = File.ReadAllText(fileLocation);
                 char[] paras = data.ToCharArray();
-                for(var i=0;i<paras.Length;i++){
+                while(i<paras.Length){
                     char param = paras[i];
-                    Interpreter.Interpreter.Interpret(param, storage);
+                    Interpreter.Interpreter.Interpret(param, storage, paras, i);
+                    i++;
                 }
                 File.WriteAllText(outputDestination, Interpreter.Interpreter.GetOutput());
             }
+        }
+
+        public static void SetI(int value){
+            i = value;
         }
     }
 }

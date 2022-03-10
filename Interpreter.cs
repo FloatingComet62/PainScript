@@ -34,7 +34,8 @@ namespace Interpreter{
     public class Interpreter{
         static int pointer = 0;
         static string output = "";
-        static public void Interpret(char param, Dictionary<int, int> storage){
+        static public void Interpret(char param, Dictionary<int, int> storage, char[] paras, int index){
+            // Funcs.Util.Text(param.ToString()+"-"+index.ToString()+"-"+pointer.ToString());
             if(param == '>'){
                 if(!storage.ContainsKey(pointer+1)){
                     storage.Add(pointer+1, 0);
@@ -69,6 +70,36 @@ namespace Interpreter{
                         Funcs.Sys.Exit(1, "Error: Couldn't convert input to integer");
                     }
                 }
+            }else if(param == '{'){
+                int internalLoops = 0;
+                int loopEndIndex = 0;
+                int loopPointer = pointer;
+                for(int i = index; i < paras.Length; i++){
+                    if(loopEndIndex != 0){
+                        i = paras.Length;
+                        break;
+                    }
+                    if(paras[i] == '{'){
+                        internalLoops++;
+                    }
+                    if(paras[i] == '}'){
+                        internalLoops--;
+                        if(internalLoops == 0){
+                            loopEndIndex = i;
+                        }
+                    }
+                }
+
+                char[] loopItems = new char[loopEndIndex - index];
+                for(int i = index+1; i < loopEndIndex; i++){
+                    loopItems[i-(index+1)] = paras[i];
+                }
+                while(storage[loopPointer]!=0){
+                    loopItems.ToList().ForEach(x => {
+                        Interpret(x, storage, paras, index);
+                    });
+                }
+                Program.Program.SetI(loopEndIndex);
             }
         }
         static public void AppendToOutput(string input){
