@@ -2,4 +2,4 @@
 
 ```./painscript <input file location> <output file location>```
 
-Eg. ```./painscript program.ps output.ps```
+Eg. ```./painscript program.txt output.txt```
