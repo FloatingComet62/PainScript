@@ -1,30 +1,42 @@
 namespace Interpreter{
     class Translate{
-        static public void UpperCase(int input){
+        static public void UpperCase(int input, bool appendToOutput = true){
             List<string> translation = new List<string>(new string[]{" ", "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"});
                         try{
                 string output = translation[input];
-                Interpreter.AppendToOutput(output);
+                if(appendToOutput){
+                    Interpreter.AppendToOutput(output);
+                }else{
+                    Funcs.Util.Text(output, ConsoleColor.White , false);
+                }
             }
             catch (System.Exception){
                 Funcs.Sys.Exit(1, "Error: Invalid input");
             }
         }
-        static public void LowerCase(int input){
+        static public void LowerCase(int input, bool appendToOutput = true){
             List<string> translation = new List<string>(new string[]{" ", "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"});
             try{
                 string output = translation[input];
-                Interpreter.AppendToOutput(output);
+                if(appendToOutput){
+                    Interpreter.AppendToOutput(output);
+                }else{
+                    Funcs.Util.Text(output, ConsoleColor.White , false);
+                }
             }
             catch (System.Exception){
                 Funcs.Sys.Exit(1, "Error: Invalid input");
             }
         }
-        static public void SpecialChar(int input){
+        static public void SpecialChar(int input, bool appendToOutput = true){
         List<string> translation = new List<string>(new string[]{"~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "`", "[", "]", "{", "}", "|", "\\", ";", ":", "\"", "'", "<", ">", ",", ".", "?", "/", "\n"});
             try{
                 string output = translation[input];
-                Interpreter.AppendToOutput(output);
+                if(appendToOutput){
+                    Interpreter.AppendToOutput(output);
+                }else{
+                    Funcs.Util.Text(output, ConsoleColor.White , false);
+                }
             }
             catch (System.Exception){
                 Funcs.Sys.Exit(1, "Error: Invalid input");
@@ -52,13 +64,49 @@ namespace Interpreter{
             }else if(param == '-'){
                 storage[pointer]--;
             }else if(param == '\''){
-                Translate.LowerCase(storage[pointer]);
+                if(paras.Length < index+2){
+                    Translate.LowerCase(storage[pointer]);
+                }else{
+                    if(paras[index+1] == '\''){
+                        Translate.LowerCase(storage[pointer], false);
+                        Program.Program.SetI(index+1);
+                    }else{
+                        Translate.LowerCase(storage[pointer]);
+                    }
+                }
             }else if(param == '\"'){
-                Translate.UpperCase(storage[pointer]);
+                if(paras.Length < index+2){
+                    Translate.UpperCase(storage[pointer]);
+                }else{
+                    if(paras[index+1] == '\"'){
+                        Translate.UpperCase(storage[pointer], false);
+                        Program.Program.SetI(index+1);
+                    }else{
+                        Translate.UpperCase(storage[pointer]);
+                    }
+                }
             }else if(param == ']'){
-                output += storage[pointer];
+                if(paras.Length < index+2){
+                    output += storage[pointer];
+                }else{
+                    if(paras[index+1] == ']'){
+                        Funcs.Util.Text(storage[pointer].ToString());
+                        Program.Program.SetI(index+1);
+                    }else{
+                        output += storage[pointer];
+                    }
+                }
             }else if(param == '['){
-                Translate.SpecialChar(storage[pointer]);
+                if(paras.Length < index+2){
+                    Translate.SpecialChar(storage[pointer]);
+                }else{
+                    if(paras[index+1] == '['){
+                        Translate.SpecialChar(storage[pointer], false);
+                        Program.Program.SetI(index+1);
+                    }else{
+                        Translate.SpecialChar(storage[pointer]);
+                    }
+                }
             }else if(param == '.'){
                 string? input = Console.ReadLine();
                 if(input == null){
