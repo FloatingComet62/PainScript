@@ -4,7 +4,6 @@ using Funcs;
 namespace Program{
     class Program{
 
-        static int i = 0;
         static void Main(string[] args){
             if(args.Length == 0){
                 Funcs.Sys.Exit(1, "Error: No input file location provided");
@@ -17,23 +16,16 @@ namespace Program{
             string fileLocation = args[0];
             string outputDestination = args[1];
             if(File.Exists(fileLocation)){
-                Dictionary<int, int> storage = new Dictionary<int, int>(){
-                    {0, 0}
-                };
+                List<int> storage = new List<int>(new int[30000]);
                 File.Create(outputDestination).Close();
                 string data = File.ReadAllText(fileLocation);
                 char[] paras = data.ToCharArray();
-                while(i<paras.Length){
-                    char param = paras[i];
-                    Interpreter.Interpreter.Interpret(param, storage, paras, i);
-                    i++;
-                }
+                Interpreter.Interpreter.Interpret(storage, paras);
                 File.WriteAllText(outputDestination, Interpreter.Interpreter.GetOutput());
+                Funcs.Sys.Exit(0, "Success", ConsoleColor.Green);
+            }else{
+                Funcs.Sys.Exit(1, "Error: File not found");
             }
-        }
-
-        public static void SetI(int value){
-            i = value;
         }
     }
 }

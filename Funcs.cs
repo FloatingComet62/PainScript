@@ -16,8 +16,8 @@ namespace Funcs{
         }
     }
     public class Sys{
-        static public void Exit(int ErrorCode, string ErrorMessage){
-            Util.Text(ErrorMessage, ConsoleColor.Red, true);
+        static public void Exit(int ErrorCode, string ErrorMessage, ConsoleColor consoleColor = ConsoleColor.Red){
+            Util.Text(ErrorMessage, consoleColor, true);
             Environment.Exit(ErrorCode);
         }
     }
